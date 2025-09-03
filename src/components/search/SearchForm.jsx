@@ -1,8 +1,8 @@
 import React from "react";
 import searchImage from "./../../assets/images/searchImage.png"
-const SearchForm = () => {
+const SearchForm = ({layout}) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 px-auto  gap-8 ">
+    <div className={`grid grid-cols-1 ${layout} px-auto px-8  md:pl-8  gap-8`}>
         {/* Left Side - Contact Info */}
       <div className="space-y-6 py-8  md:py-4 lg:py-8">
         <div className="mb-8 md:mb-4 lg:mb-8">

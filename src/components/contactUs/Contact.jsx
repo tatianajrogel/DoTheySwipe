@@ -3,7 +3,7 @@ import vector from "./../../assets/images/vector.png"
 import backgroundImage from "../../assets/images/background-image.png"
 const Contact = () => {
   return (
-    <section className="py-16 mt-28 mx-auto px-4 flex justify-center bg-cover bg-center "
+    <section className="py-16 mt-8 md:mt-20 mx-auto px-4 flex justify-center bg-cover bg-center "
 
     >
       <div className="max-w-6xl mx-auto ">
@@ -13,7 +13,7 @@ const Contact = () => {
         >
           
           {/* Left Side - Contact Info */}
-          <div className="flex flex-col order-1 md:order-2 text-white bg-cover bg-center rounded-2xl lg:text-left bg-[linear-gradient(to_right,#E11D48,#CC1D6B,#B81C8B,#A51CA9)] "
+          <div className="flex flex-col order-2 md:order-1 text-white bg-cover bg-center rounded-2xl lg:text-left bg-[linear-gradient(to_right,#E11D48,#CC1D6B,#B81C8B,#A51CA9)] "
           
               style={{backgroundImage:`linear-gradient(to right,#E11D48,#CC1D6B,#B81C8B,#A51CA9),url(${vector})`}}
           >
@@ -37,7 +37,7 @@ const Contact = () => {
           </div>
 
           {/* Right Side - Contact Form */}
-          <div className="flex flex-col order-2 md:order-1 gap-6 rounded-2xl p-8  bg-white shadow-md">
+          <div className="flex flex-col order-1 md:order-2 gap-6 rounded-2xl p-8  bg-white shadow-md">
             <div className="">
                  <h3 className="text-4xl font-bold text-slate-900 mb-3">
               Get in <span className="bg-[linear-gradient(to_right,#E11D48,#CC1D6B,#B81C8B,#A51CA9)] bg-clip-text text-transparent">touch</span>

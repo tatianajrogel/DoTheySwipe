@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 import SocialIcon from "./SocialIcon";
+import logo from '../../assets/images/logo.png'
 
   const socialLinks = [
     { href: "https://facebook.com/", label: "Facebook", Icon: Facebook, color: "text-blue-600" },
@@ -11,12 +12,13 @@ import SocialIcon from "./SocialIcon";
 
 const Footer = () => {
   return (
-    <footer className="text-black pb-10 px-4">
-      <div className="max-w-6xl rounded-xl px-4 bg-gray-100 pt-16 pb-6 mx-auto">
+    <footer className="text-black sm:pb-10 sm:px-4">
+      <div className="max-w-6xl rounded-xl px-4 bg-gray-100 pt-6 md:pt-16 pb-6 mx-auto">
         {/* Logo and Navigation */}
-        <div className="flex flex-col justify-center items-center mb-8">
+        <div className="flex flex-col justify-center items-center md:mb-4">
           {/* Logo */}
-          <div className="mb-6">
+          <div className="text-2xl font-bold flex items-center gap-2 mb-6">
+          <img src={logo} className="w-8 lg:w-9"  alt="" />
             <NavLink to="/" className="text-2xl md:text-5xl font-bold">
               <span className="bg-gradient-to-r from-[#E11D48] to-[#A51CA9] bg-clip-text text-transparent">
                 DoTheySwipe
@@ -25,7 +27,7 @@ const Footer = () => {
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex flex-wrap justify-center gap-6 md:gap-8 mb-6">
+          <nav className="flex flex-wrap justify-center text-sm md:text-lg gap-6 md:gap-8 mb-6">
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -59,7 +61,7 @@ const Footer = () => {
               FAQ's
             </NavLink>
 <NavLink
-              to="/faqs"
+              to="/privacy-policy"
               className={({ isActive }) =>
                 `hover:text-[#E11D48] transition-colors ${
                   isActive ? "text-[#E11D48]" : "text-slate-950"
@@ -70,7 +72,7 @@ const Footer = () => {
             </NavLink>
 
            <NavLink
-              to="/faqs"
+              to="/contact"
               className={({ isActive }) =>
                 `hover:text-[#E11D48] transition-colors ${
                   isActive ? "text-[#E11D48]" : "text-slate-950"

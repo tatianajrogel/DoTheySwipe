@@ -9,10 +9,10 @@ const SearchSection = ({
   searchContent = <SearchForm/>
 }) => {
   return (
-    <div className="relative w-full max-w-7xl  mx-auto mt-14 md:mt-20 rounded-t-xl md:px-4 py-12">
+    <div className="relative w-full max-w-7xl  mx-auto mt-8 md:mt-20 rounded-t-xl md:px-4  py-12">
       <SectionHeader title={title} description={description}/>
         <SearchFormWrapper>
-          {searchContent}
+           <SearchForm layout="md:grid-cols-2"/>
         </SearchFormWrapper>
     </div>
   );

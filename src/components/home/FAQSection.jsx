@@ -1,6 +1,6 @@
 import FAQItem from "./FAQItem";
 
-const FAQ = () => {
+const FAQSection = () => {
   const faqItems = [
     {
       question: "What is DoTheySwipe?",
@@ -30,7 +30,7 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-16 px-4 bg-white">
+    <section className="py-16 px-4 rounded-xl">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row justify-between items-scenter  mb-16">
          <div>
@@ -49,7 +49,7 @@ const FAQ = () => {
         </div>
         </div>
 
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto bg-white px-5 rounded-xl">
           {faqItems.map((item, index) => (
             <FAQItem key={index} question={item.question} answer={item.answer} />
           ))}
@@ -60,4 +60,4 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+export default FAQSection;

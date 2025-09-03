@@ -4,7 +4,7 @@ import Hero from '../components/home/Hero';
 import HowItWorks from '../components/home/HowItWorks';
 import FastAndAccurate from '../components/home/FastAndAccurate';
 import Pricing from '../components/home/Pricing';
-import FAQ from '../components/home/FAQ';
+import FAQSection from '../components/home/FAQSection';
 import CTA from '../components/home/CTA';
 import Footer from '../components/footer/Footer';
 import Testimonials from '../components/home/Testimonial';
@@ -17,7 +17,7 @@ const Home = () => {
       <FastAndAccurate/>
       <Testimonials/>
       <Pricing/>
-      <FAQ/>
+      <FAQSection/>
       <CTA/>
     </div>
   );
