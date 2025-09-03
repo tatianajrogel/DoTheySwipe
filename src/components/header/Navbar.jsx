@@ -32,9 +32,9 @@ const toggleMenu = () => {
   
 
 
-    <header className=" md:p-5 md:px-5 fixed top-0 right-0 z-50 left-0 bg-cover shadow-md md:shadow-none bg-slate/100  md:bg-transparent">
+    <header className=" md:p-5 md:px-5 fixed top-0 right-0 z-50 left-0 bg-cover shadow-md md:shadow-none bg-slate-100  md:bg-transparent">
   {/* Navbar */}
-  <nav className="bg-white rounded-xl md:shadow-md p-4 relative z-50">
+  <nav className=" rounded-xl md:shadow-md p-4 relative  z-50">
     <div className="container mx-auto flex justify-between items-center">
       {/* Logo */}
       <div className="flex items-center">

@@ -12,7 +12,7 @@ import backgroundImage from "./assets/images/background-image.png"
 
 function App() {
   return (
-    <div className="bg-cover bg-center bg-no-repeat"
+    <div className=""
       
       >
       <Navbar />
