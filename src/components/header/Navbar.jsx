@@ -118,7 +118,7 @@ const toggleMenu = () => {
     >
       <div className="flex flex-col space-y-4 px-4  relative ">
         {/* ...Mobile NavLinks*/}
-        <div className="flex flex-col mb-4 space-y-4">
+        <div className="flex flex-col mb-6 space-y-4">
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -178,7 +178,7 @@ const toggleMenu = () => {
   {/* Overlay (only mobile) */}
   {isMenuOpen && (
     <div
-      className="fixed inset-0 bg-slate-900/60  backdrop-blur-sm "
+      className="fixed inset-0 bg-slate-900/50  "
       onClick={() => setIsMenuOpen(false)} 
     ></div>
   )}
