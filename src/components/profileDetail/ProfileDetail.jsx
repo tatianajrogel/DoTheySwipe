@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import location from "../../assets/images/location.svg"
 import capIcon from "../../assets/images/cap-icon.svg"
+import arrowLeft from "../../assets/images/arrowLeft.png"
 
 const ProfileDetail = ({ profile, images }) => {
   const [current, setCurrent] = useState(0);
@@ -16,9 +17,10 @@ const ProfileDetail = ({ profile, images }) => {
   };
 
   return (
-     <section className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8 md:py-18 p-6 bg-white rounded-2xl ">
+     <section className="grid grid-cols-1  md:grid-cols-2  gap-8 py-8 md:py-14 p-6 bg-white rounded-2xl ">
       {/* Left Side: Profile Info */}
       <div className="flex flex-col  space-y-4">
+        <span className="w-8 h-8 flex items-center justify-center rounded-full bg-white shadow-sm"><img src={arrowLeft}  alt="" /></span>
         <h2 className="text-2xl font-bold">{profile.name}</h2>
         <p className="flex items-center gap-2 text-[#11181E]">
           <span className="flex gap-1 items-center">♂ {profile.gender}  {profile.age}</span>
@@ -48,11 +50,11 @@ const ProfileDetail = ({ profile, images }) => {
       </div>
 
       {/* Right Side: Image Slider */}
-      <div className="relative flex items-center justify-center  h-72">
+      <div className="relative flex items-center self-center lg:self-end justify-center  h-72">
         {/* Left Arrow */}
         <button
           onClick={prevSlide}
-          className="absolute left-18 lg:left-30 z-30 p-1.5 bg-white opacity-70 rounded-full shadow hover:bg-gray-100"
+          className="absolute left-18 lg:left-30 z-30 p-1.5 bg-slate-200 opacity-70 rounded-full shadow hover:bg-gray-100"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
@@ -100,7 +102,7 @@ const ProfileDetail = ({ profile, images }) => {
         {/* Right Arrow */}
         <button
           onClick={nextSlide}
-          className="absolute right-18 lg:right-30 z-20 p-1.5 bg-white opacity-70 rounded-full shadow hover:bg-gray-100"
+          className="absolute right-18 lg:right-30 z-20 p-1.5 bg-slate-200 opacity-70 rounded-full shadow hover:bg-gray-100"
         >
           <ChevronRight className="w-5 h-5" />
         </button>

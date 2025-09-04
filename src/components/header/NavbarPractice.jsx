@@ -12,9 +12,9 @@ const [isMenuOpen, setIsMenuOpen] = useState(false);
 const toggleMenu = () => {
   setIsMenuOpen((prev) => {
     if (!prev) {
-      document.body.style.overflow = "hidden"; 
+      document.body.style.overflow = "hidden"; // menu open → disable scroll
     } else {
-      document.body.style.overflow = "auto"; 
+      document.body.style.overflow = "auto";   // menu close → enable scroll
     }
     return !prev; // state update
   });
