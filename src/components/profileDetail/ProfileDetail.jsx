@@ -16,9 +16,9 @@ const ProfileDetail = ({ profile, images }) => {
   };
 
   return (
-     <section className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8 bg-white rounded-2xl ">
+     <section className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8 md:py-18 p-6 bg-white rounded-2xl ">
       {/* Left Side: Profile Info */}
-      <div className="flex flex-col justify-center space-y-4">
+      <div className="flex flex-col  space-y-4">
         <h2 className="text-2xl font-bold">{profile.name}</h2>
         <p className="flex items-center gap-2 text-[#11181E]">
           <span className="flex gap-1 items-center">♂ {profile.gender}  {profile.age}</span>

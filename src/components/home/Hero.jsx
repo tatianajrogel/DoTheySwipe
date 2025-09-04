@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Search, Menu, X, ChevronRight, Shield, Eye, Zap } from "lucide-react";
 import girl from "./../../assets/images/girlImage.jfif"
 import heroImge from "./../../assets/images/heroImage.png"
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -23,9 +24,13 @@ const Hero = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-8">
+            <Link
+            to='/about'
+            >
             <button className="px-8 py-4 bg-gradient-to-r from-[#E11D48] to-[#A51CA9] text-white rounded-full font-semibold flex items-center justify-center gap-2 transition-transform hover:scale-105 shadow-lg hover:shadow-xl">
               Search on Tinder <ChevronRight size={20} />
             </button>
+            </Link>
           </div>
 
         </div>

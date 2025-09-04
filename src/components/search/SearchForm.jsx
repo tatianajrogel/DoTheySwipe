@@ -1,5 +1,6 @@
 import React from "react";
 import searchImage from "./../../assets/images/searchImage.png"
+import { Link } from "react-router-dom";
 const SearchForm = ({layout}) => {
   return (
     <div className={`grid grid-cols-1 ${layout} px-auto px-8  md:pl-8  gap-8`}>
@@ -63,25 +64,25 @@ const SearchForm = ({layout}) => {
             </div>
           </div>
           {/* Submit button  */}
-             <button 
-                className="w-full flex items-end justify-center gap-2 bg-[linear-gradient(to_right,#E11D48,#CC1D6B,#B81C8B,#A51CA9)]  text-white py-2.5 lg:py-3 px-6 rounded-full font-semibold hover:bg-[#CC1D6B] transition-colors duration-300"
-
-          >
-           <span> Continue</span>
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
+              <Link
+      to="/location" // 👈 directly page ka path
+      className="w-[300px] mx-auto bg-gradient-to-r from-rose-600 to-purple-600 text-white py-2 md:py-3.5 px-6 rounded-full font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+    >
+      Continue
+      <svg
+        className="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 5l7 7-7 7"
+        />
+      </svg>
+    </Link>
         </form>
 
        

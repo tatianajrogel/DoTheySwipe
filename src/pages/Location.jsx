@@ -1,10 +1,16 @@
 import React from 'react'
-import LocationSection from '../components/location/LocationSection'
+import LocationForm from "../components/location/LocationForm.jsx" 
+import Profiles from '../components/profile/Profiles.jsx'
+import SearchSection from '../components/search/SearchSection.jsx'
+
 
 const Location = () => {
   return (
     <div>
-      <LocationSection/>
+      <SearchSection 
+      title = "Who are you looking for?"
+      description = "Provide the name, age, and gender of the person you're looking for, as they might appear in the app."
+      searchContent = {<LocationForm/>} />
     </div>
   )
 }

@@ -2,18 +2,21 @@ import React from "react";
 import searchImage from "./../../assets/images/searchImage.png"
 import Map from "./Map";
 import gps from '../../assets/images/gps.png'
+import Location from '../../pages/Location'
+import { Link } from "react-router-dom";
+
 
 const LocationForm = ({layout}) => {
   return (
     
-    <div className={`grid grid-cols-1 px-8 gap-8  px-auto`}>
-        {/* Left Side - Contact Info */}
+    <div className={`grid grid-cols-1 px-8 gap-8 px-auto`}>
+        {/* Left Side */}
       
          <div className="space-y-6">
       {/* Search Input Section */}
       {/* <div className="space-y-6 py-8  md:py-4 lg:py-8"> */}
       <div className="mb-8 md:mb-4 lg:mb-8">
-        <h1 className="text-3xl mt-8 font-bold text-gray-800 mb-4">
+        <h1 className="text-2xl lg:text-3xl mt-8 font-bold text-gray-800 mb-4">
           Where <span className="text-[#E11D48]"> might they use it? </span>
         </h1>
         <p className="text-gray-600">
@@ -58,30 +61,30 @@ const LocationForm = ({layout}) => {
         
       </form>
     </div>
-      {/* right Side - Contact Info */}
-     <Map/>
+      {/* right Side*/}
+     <Map height="md:h-80"/>
      
         {/* Continue Button */}
-        <div className="pb-12">
-          <button
-            // onClick={onContinue}
-            className="w-[300px]  mx-auto bg-gradient-to-r from-rose-600 to-purple-600 text-white py-2 md:py-3.5  px-6 rounded-full font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
-          >
-            Continue
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
+        <div className="md:pb-12">
+         <Link
+  to="/profile"
+  className="w-[300px] mx-auto bg-gradient-to-r from-rose-600 to-purple-600 text-white py-2 md:py-3.5 px-6 rounded-full font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+>
+  Continue
+  <svg
+    className="w-5 h-5"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
+  </svg>
+</Link>
         </div>
    </div>
    
