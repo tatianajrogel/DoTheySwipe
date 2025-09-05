@@ -3,6 +3,7 @@ import searchImage from "./../../assets/images/searchImage.png"
 import { Link } from "react-router-dom";
 const SearchForm = ({layout}) => {
   return (
+    <div className="md:relative md:-mt-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 mx-auto md:mx-0 w-full  lg:max-w-5xl bg-white md:rounded-2xl md:shadow-sm ">
     <div className={`grid grid-cols-1 ${layout} px-auto px-8  md:pl-8  gap-8`}>
         {/* Left Side - Contact Info */}
       <div className="space-y-6 py-8  md:py-4 lg:py-8">
@@ -99,6 +100,7 @@ const SearchForm = ({layout}) => {
             className="object-cover w-full  lg:h-auto"/>
         </div>
       </div>
+    </div>
     </div>
   );
 };

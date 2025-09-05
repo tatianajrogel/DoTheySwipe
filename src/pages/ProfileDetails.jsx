@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchSection from '../components/search/SearchSection'
+import SectionWrapper from '../components/search/SectionWrapper.jsx'
 import ProfileDetail from '../components/profileDetail/ProfileDetail.jsx'
 import profile1 from '../assets/images/profile1.png'
 import profile2 from '../assets/images/profile2.png'
@@ -27,12 +27,10 @@ const ProfileDetails = () => {
     profile4,
   ]
   return (
-
-    <div>
-        <SearchSection 
-        title = "Personal Info"
-      searchContent={<ProfileDetail profile={userProfile} images={images}  />}/>
-    </div>
+ <SectionWrapper 
+        title = "Personal Info">
+          <ProfileDetail profile={userProfile} images={images}  />
+          </SectionWrapper>
   )
 }
 

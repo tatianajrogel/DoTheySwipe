@@ -1,16 +1,15 @@
-import React from 'react'
-import SearchSection from '../components/search/SearchSection'
-import SearchForm from '../components/search/SearchForm'
+import SectionWrapper from '../components/search/SectionWrapper'
 import Profiles from '../components/profile/Profiles'
 
 
 const Profile = () => {
   return (
     <div>
-        <SearchSection
+        <SectionWrapper
         title = "You’re almost there!"
-      description = "We found 20 profiles that matches your description!"
-         searchContent={<Profiles layout="md:grid-cols-2"/>}/>   
+      description = "We found 20 profiles that matches your description!">   
+         <Profiles layout="md:grid-cols-2"/>
+         </SectionWrapper>
     </div>
   )
 }

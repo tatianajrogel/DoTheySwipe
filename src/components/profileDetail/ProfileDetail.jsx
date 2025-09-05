@@ -17,6 +17,7 @@ const ProfileDetail = ({ profile, images }) => {
   };
 
   return (
+    <div className="md:relative md:-mt-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 mx-auto md:mx-0 w-full  lg:max-w-5xl bg-white md:rounded-2xl md:shadow-sm ">
      <section className="grid grid-cols-1  md:grid-cols-2  gap-8 py-8 md:py-14 p-6 bg-white rounded-2xl ">
       {/* Left Side: Profile Info */}
       <div className="flex flex-col  space-y-4">
@@ -108,6 +109,7 @@ const ProfileDetail = ({ profile, images }) => {
         </button>
       </div>
     </section>
+    </div>
   );
 };
 
