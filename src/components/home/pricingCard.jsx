@@ -1,4 +1,4 @@
-const PricingCard = ({ title, price, features, isPopular = false }) => {
+const PricingCard = ({ title, price, features }) => {
   return (
     <div className={`bg-white rounded-2xl p-8  shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col relative `}>
       
