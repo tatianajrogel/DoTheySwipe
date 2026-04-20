@@ -24,7 +24,7 @@ const Footer = () => {
         <div className="flex flex-col justify-center items-center md:mb-4">
           {/* Logo */}
           <div className="text-2xl font-bold flex items-center gap-2 mb-6">
-          <img src={logo} className="w-8 lg:w-9"  alt="" />
+          <img src={logo} className="w-8 lg:w-9"  alt="DoTheySwipe logo" />
             <NavLink to="/" className="text-2xl md:text-5xl font-bold">
               <span className="bg-gradient-to-r from-[#E11D48] to-[#A51CA9] bg-clip-text text-transparent">
                 DoTheySwipe
@@ -98,8 +98,8 @@ const Footer = () => {
 
           {/* Social Icons */}
            <div className="flex justify-center space-x-3">
-        {socialLinks.map((item, index) => (
-          <SocialIcon key={index} {...item} />
+        {socialLinks.map((item) => (
+          <SocialIcon key={item.label} {...item} />
         ))}
       </div>
         </div>

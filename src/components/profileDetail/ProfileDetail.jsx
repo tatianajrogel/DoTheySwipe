@@ -21,21 +21,21 @@ const ProfileDetail = ({ profile, images }) => {
      <section className="grid grid-cols-1  md:grid-cols-2  gap-8 py-8 md:py-14 p-6 bg-white rounded-2xl ">
       {/* Left Side: Profile Info */}
       <div className="flex flex-col  space-y-4">
-        <span className="w-8 h-8 flex items-center justify-center rounded-full bg-white shadow-sm"><img src={arrowLeft}  alt="" /></span>
+        <span className="w-8 h-8 flex items-center justify-center rounded-full bg-white shadow-sm"><img src={arrowLeft} alt="Go back" /></span>
         <h2 className="text-2xl font-bold">{profile.name}</h2>
         <p className="flex items-center gap-2 text-[#11181E]">
           <span className="flex gap-1 items-center">♂ {profile.gender}  {profile.age}</span>
-           <span className="flex gap-1 items-center"><img src={location} className="w-[12px] h-[16px]" alt="" /> {profile.location}</span>
+           <span className="flex gap-1 items-center"><img src={location} className="w-[12px] h-[16px]" alt="Location" /> {profile.location}</span>
         </p>
         <p className="text-[#11181E] ">
-          <span className="flex gap-1 items-center"><img src={capIcon} className="w-[16px] h-[16px]" alt="" />{profile.job} </span>
+          <span className="flex gap-1 items-center"><img src={capIcon} className="w-[16px] h-[16px]" alt="Job" />{profile.job} </span>
           </p>
 
         {/* Interests */}
         <div className="flex flex-wrap gap-2">
-          {profile.interests.map((interest, index) => (
+          {profile.interests.map((interest) => (
             <span
-              key={index}
+              key={interest}
               className="px-3 py-1 bg-gray-100 text-gray-700  text-sm rounded-full"
             >
               {interest}
@@ -56,6 +56,7 @@ const ProfileDetail = ({ profile, images }) => {
         <button
           onClick={prevSlide}
           className="absolute left-18 lg:left-30 z-30 p-1.5 bg-slate-200 opacity-70 rounded-full shadow hover:bg-gray-100"
+          aria-label="Previous photo"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
@@ -65,26 +66,19 @@ const ProfileDetail = ({ profile, images }) => {
           {images.map((img, index) => {
             let position = "hidden"; // Default hidden
 
-            
-
-             if (index === current) {
-              // Center image
+            if (index === current) {
               position =
                "absolute w-60 h-80 rounded-xl shadow-lg object-cover transition-all duration-500 border-2 border-white scale-100 z-20";
            } else if (index === (current - 1 + images.length) % images.length) {
-              // Left 1
               position =
                 "absolute w-44 h-80 rounded-xl shadow-md object-cover transition-all duration-500 -translate-x-12 scale-90 z-10 opacity-70 rotate-[-5deg]";
             } else if (index === (current - 2 + images.length) % images.length) {
-              // Left 2
               position =
                "absolute w-44 h-80 rounded-xl shadow-md object-cover transition-all duration-500 -translate-x-14 scale-90 z-5 opacity-70 rotate-[-12deg]";
             } else if (index === (current + 1) % images.length) {
-              // Right 1
               position =
                "absolute w-44 h-80 rounded-xl shadow-md object-cover transition-all duration-500 translate-x-12 scale-90 z-10 opacity-70 rotate-[5deg]";
             } else if (index === (current + 2) % images.length) {
-              // Right 2
               position =
                "absolute w-44 h-80 rounded-xl shadow-md object-cover transition-all duration-500 translate-x-14 scale-90 z-5 opacity-70 rotate-[12deg]";
             }
@@ -93,7 +87,7 @@ const ProfileDetail = ({ profile, images }) => {
               <img
                 key={index}
                 src={img}
-                alt=""
+                alt={`Profile photo ${index + 1}`}
                 className={position}
               />
             );
@@ -104,6 +98,7 @@ const ProfileDetail = ({ profile, images }) => {
         <button
           onClick={nextSlide}
           className="absolute right-18 lg:right-30 z-20 p-1.5 bg-slate-200 opacity-70 rounded-full shadow hover:bg-gray-100"
+          aria-label="Next photo"
         >
           <ChevronRight className="w-5 h-5" />
         </button>

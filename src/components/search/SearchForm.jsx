@@ -1,5 +1,5 @@
 import React from "react";
-import searchImage from "./../../assets/images/searchImage.png"
+import searchImage from "../../assets/images/searchImage.png"
 import { Link } from "react-router-dom";
 const SearchForm = ({layout}) => {
   return (
@@ -96,7 +96,7 @@ const SearchForm = ({layout}) => {
         <div className="" >
           <img
             src={searchImage}
-            alt=""
+            alt="Search illustration"
             className="object-cover w-full  lg:h-auto"/>
         </div>
       </div>

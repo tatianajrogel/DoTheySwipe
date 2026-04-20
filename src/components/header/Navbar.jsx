@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Search, Menu, X } from "lucide-react"; // icons
-import logo from "./../../assets/images/logo.png"
-import backgroundImage from "../../assets/images/background-image.png"
+import logo from "../../assets/images/logo.png"
 
 const Navbar = () => {
 
@@ -40,7 +39,7 @@ const toggleMenu = () => {
       {/* Logo */}
       <div className="flex items-center pl-4 md:pl-0 ">
         <span className="text-2xl font-bold flex items-center gap-2">
-          <img src={logo} className="w-8 lg:w-9" alt="" />
+          <img src={logo} className="w-8 lg:w-9" alt="DoTheySwipe logo" />
           <span className="bg-[linear-gradient(to_right,#E11D48,#CC1D6B,#B81C8B,#A51CA9)] bg-clip-text text-transparent">
             DoTheySwipe
           </span>
@@ -76,9 +75,7 @@ const toggleMenu = () => {
             </NavLink>
             <NavLink
               to="/search"
-              className={({ isActive }) =>
-                `px-5 py-2.5 rounded-full font-semibold transition-all duration-300 relative group overflow-hidden`
-              }
+              className="px-5 py-2.5 rounded-full font-semibold transition-all duration-300 relative group overflow-hidden"
             >
               {/* Gradient border */}
               <span className="absolute inset-0 bg-[linear-gradient(to_right,#E11D48,#CC1D6B,#B81C8B,#A51CA9)] rounded-full"></span>
@@ -155,10 +152,7 @@ const toggleMenu = () => {
             </NavLink>
             <NavLink
               to="/search"
-              className={({ isActive }) =>
-                `px-5 py-3 rounded-full font-semibold transition-all duration-300 relative group overflow-hidden 
-              `
-              }
+              className="px-5 py-3 rounded-full font-semibold transition-all duration-300 relative group overflow-hidden"
               onClick={() => setIsMenuOpen(false)}
             >
               <span className="absolute inset-0 bg-[linear-gradient(to_right,#E11D48,#CC1D6B,#B81C8B,#A51CA9)] rounded-full"></span>
