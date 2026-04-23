@@ -1,26 +1,29 @@
-// TestimonialCard Component
-const TestimonialCard = ({ name, text, role }) => {
-  return (
-    <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-      {/* Rating Stars */}
-      <div className="flex justify-center mb-4 text-yellow-400">
-        {[...Array(5)].map((_, i) => (
-          <span key={i} className="text-2xl">✰</span>
-        ))}
-      </div>
-      
-      {/* Testimonial Text */}
-      <p className="text-gray-700 text-lg italic text-center mb-6">
-        "{text}"
-      </p>
-      
-      {/* User Info */}
-      <div className="text-center">
-        <p className="font-semibold text-gray-900">{name}</p>
-        {role && <p className="text-sm text-gray-600">{role}</p>}
-      </div>
-    </div>
-  );
-};
+import { Box, Flex, Text } from "@chakra-ui/react";
 
-export default TestimonialCard
+const TestimonialCard = ({ name, text, role }) => (
+  <Box
+    bg="white"
+    rounded="2xl"
+    p={8}
+    shadow="lg"
+    _hover={{ shadow: "xl" }}
+    transition="all 0.3s"
+  >
+    <Flex justify="center" mb={4} gap={1}>
+      {[...Array(5)].map((_, i) => (
+        <Text key={i} fontSize="2xl" color="yellow.400">✰</Text>
+      ))}
+    </Flex>
+
+    <Text color="gray.700" fontSize="lg" fontStyle="italic" textAlign="center" mb={6}>
+      "{text}"
+    </Text>
+
+    <Box textAlign="center">
+      <Text fontWeight="semibold" color="gray.900">{name}</Text>
+      {role && <Text fontSize="sm" color="gray.600">{role}</Text>}
+    </Box>
+  </Box>
+);
+
+export default TestimonialCard;
