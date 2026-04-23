@@ -1,14 +1,20 @@
+import { Box } from "@chakra-ui/react";
 import SectionHeader from "../search/SectionHeader";
 
-const SectionWrapper = ({ title = "", description = "", children }) => {
-  return (
-    <div className="relative w-full max-w-7xl  mx-auto mt-8 md:mt-20 rounded-t-xl md:px-4  py-12">
-      <SectionHeader title={title} description={description} />
-
-        {children}
-    </div>
-  );
-};
-
+const SectionWrapper = ({ title = "", description = "", children }) => (
+  <Box
+    position="relative"
+    w="full"
+    maxW="7xl"
+    mx="auto"
+    mt={{ base: 8, md: 20 }}
+    rounded="xl"
+    px={{ md: 4 }}
+    py={12}
+  >
+    <SectionHeader title={title} description={description} />
+    {children}
+  </Box>
+);
 
 export default SectionWrapper;

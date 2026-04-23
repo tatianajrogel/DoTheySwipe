@@ -1,34 +1,65 @@
-import { Link } from "react-router-dom";
+import { Box, Grid, Image, Button, Text } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import { profiles } from "../../data/profilesData";
 
-const Listing = () => {
-  return (
-    <div className="relative grid grid-cols-1  md:grid-cols-4 gap-4 p-4  md:px-6 ">
+const Listing = () => (
+  <Box position="relative">
+    <Grid
+      templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }}
+      gap={4}
+      p={4}
+      px={{ md: 6 }}
+    >
       {profiles.map((profile) => (
-        <div
+        <Box
           key={profile.id}
-          className=" w-full h-64 lg:h-56 flex justify-center items-center overflow-hidden rounded-lg"
+          w="full"
+          h={{ base: "256px", lg: "224px" }}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          overflow="hidden"
+          rounded="lg"
         >
-          {/* Blurred Image */}
-          <img
+          <Image
             src={profile.src}
-            className="object-cover w-full h-full blur-md"
+            objectFit="cover"
+            w="full"
+            h="full"
+            filter="blur(8px)"
             alt="Blurred profile preview"
           />
-        </div>
+        </Box>
       ))}
-      {/* Center Button/Text */}
-      <div className="hidden absolute  inset-0 md:flex items-center justify-center">
-        <Link to="/profileDetails">
-          <button className="px-6 py-2 bg-white font-semibold rounded-full shadow-lg hover:scale-105 transition-transform">
-            <span className="text-gradient-brand">
-              Buy now to see results
-            </span>
-          </button>
-        </Link>
-      </div>
-    </div>
-  )
-}
+    </Grid>
 
-export default Listing
+    {/* Centered CTA overlay (desktop) */}
+    <Box
+      display={{ base: "none", md: "flex" }}
+      position="absolute"
+      inset={0}
+      align="center"
+      justify="center"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Button
+        as={RouterLink}
+        to="/profileDetails"
+        px={6}
+        py={2}
+        h="auto"
+        bg="white"
+        fontWeight="semibold"
+        rounded="full"
+        shadow="lg"
+        _hover={{ transform: "scale(1.05)" }}
+        transition="transform 0.2s"
+      >
+        <Text className="text-gradient-brand">Buy now to see results</Text>
+      </Button>
+    </Box>
+  </Box>
+);
+
+export default Listing;

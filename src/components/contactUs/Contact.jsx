@@ -1,122 +1,115 @@
-import youngCouple from "../../assets/images/young-couple.png"
-import vector from "../../assets/images/Vector.png"
-const Contact = () => {
-  return (
-    <section className="py-16 mt-8 md:mt-20 mx-auto px-4 flex justify-center bg-cover bg-center "
+import {
+  Box, Grid, Heading, Text, Input, Textarea, Button, Field, Image, Flex,
+} from "@chakra-ui/react";
+import { BRAND_GRADIENT } from "../../theme";
+import youngCouple from "../../assets/images/young-couple.png";
+import vector from "../../assets/images/Vector.png";
 
-    >
-      <div className="max-w-6xl mx-auto ">
-        
-
-        <div className="grid grid-cols-1 lg:grid-cols-2  gap-8 "
-        >
-          
-          {/* Left Side - Contact Info */}
-          <div className="flex flex-col order-2 md:order-1 text-white bg-cover bg-center rounded-2xl lg:text-left bg-gradient-brand "
-          
-              style={{backgroundImage:`linear-gradient(to right,var(--color-brand),var(--color-brand-mid1),var(--color-brand-mid2),var(--color-brand-end)),url(${vector})`}}
-          >
-            
-            <div className="" 
-            style={{backgroundImage:`url(${vector})`}}
-            >
-                <div className=" pt-8 text-center text-white "
-            >
-                 <h2 className="text-4xl font-bold mb-4">
-            Have Questions?
-          </h2>
-          <p className="text-lg ">
-            Can't find the answer you're looking for?
-          </p>
-            </div>
-           
-
-            <img src={youngCouple} alt="Happy couple" className=" object-cover w-full h-auto" />
-             </div>
-          </div>
-
-          {/* Right Side - Contact Form */}
-          <div className="flex flex-col order-1 md:order-2 gap-6 rounded-2xl p-8  bg-white shadow-md">
-            <div className="">
-                 <h3 className="text-4xl font-bold text-slate-900 mb-3">
-              Get in <span className="text-gradient-brand">touch</span>
-            </h3>
-            <p className="text-lg text-slate-900">
-              Our friendly team would love to hear from you.
-            </p> 
-            </div>
-            <form className=" flex flex-col gap-4">
-              {/* First Name */}
-              <div className="flex flex-col ">
-                <label htmlFor="firstName"  className="block text-lg font-medium text-gray-700 mb-2">
-                  First name<span className="text-gradient-brand">*</span> 
-                </label>
-                <input
-
-                  type="text"
-                  id="firstName"
-                  required
-                  placeholder="First Name"
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring focus:ring-brand focus:outline-none"
-                />
-              </div>
-
-              {/* Email */}
-               <div className="flex flex-col ">
-                <label htmlFor="email"  className="block text-lg font-medium text-gray-700 mb-2">
-                  Email<span className="text-gradient-brand">*</span> 
-                </label>
-                <input
-
-                  type="email"
-                  id="email"
-                  required
-                  placeholder="your@email.com"
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring focus:ring-brand focus:outline-none"
-                />
-              </div>
-
-              {/* Phone Number */}
-               <div className="flex flex-col ">
-                <label htmlFor="phoneNo"  className="block text-lg font-medium text-gray-700 mb-2">
-                  Phone Number<span className="text-gradient-brand">*</span> 
-                </label>
-                <input
-
-                  type="text"
-                  id="phoneNo"
-                  required
-                  placeholder="+1 (555) 000-000"
-                  className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring focus:ring-brand focus:outline-none"
-                />
-              </div>
-
-              {/* Message */}
-              <div className="flex flex-col ">
-                <label htmlFor="message"  className="block text-lg font-medium text-gray-700 mb-2">
-                  Message<span className="text-gradient-brand">*</span> 
-                </label>
-                <textarea
-                  required
-                  rows="4"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
-                  placeholder="Leave us a message..."
-                ></textarea>
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full bg-gradient-brand  text-white py-3 px-6 rounded-full font-semibold hover:bg-brand-mid1 transition-colors duration-300"
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+const inputStyles = {
+  borderColor: "gray.300",
+  rounded: "lg",
+  px: 4,
+  py: 2.5,
+  _focus: { ring: "2px", ringColor: "brand.500", outline: "none" },
 };
+
+const Contact = () => (
+  <Box as="section" py={16} mt={{ base: 8, md: 20 }} mx="auto" px={4} display="flex" justifyContent="center">
+    <Box maxW="6xl" w="full">
+      <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }} gap={8}>
+        {/* Left – gradient panel */}
+        <Flex
+          direction="column"
+          order={{ base: 2, md: 1 }}
+          color="white"
+          rounded="2xl"
+          overflow="hidden"
+          style={{ backgroundImage: BRAND_GRADIENT }}
+        >
+          <Box style={{ backgroundImage: `url(${vector})` }} bgCenter="center">
+            <Box pt={8} textAlign="center">
+              <Heading as="h2" fontSize="4xl" fontWeight="bold" mb={4} color="white">
+                Have Questions?
+              </Heading>
+              <Text fontSize="lg" color="white">Can't find the answer you're looking for?</Text>
+            </Box>
+            <Image src={youngCouple} alt="Happy couple" objectFit="cover" w="full" h="auto" />
+          </Box>
+        </Flex>
+
+        {/* Right – form */}
+        <Flex
+          direction="column"
+          order={{ base: 1, md: 2 }}
+          gap={6}
+          rounded="2xl"
+          p={8}
+          bg="white"
+          shadow="md"
+        >
+          <Box>
+            <Heading as="h3" fontSize="4xl" fontWeight="bold" color="gray.900" mb={3}>
+              Get in <Text as="span" className="text-gradient-brand">touch</Text>
+            </Heading>
+            <Text fontSize="lg" color="gray.900">Our friendly team would love to hear from you.</Text>
+          </Box>
+
+          <Box as="form" display="flex" flexDirection="column" gap={4}>
+            <Field.Root required>
+              <Field.Label fontWeight="medium" color="gray.700" mb={2} fontSize="lg">
+                First name <Text as="span" className="text-gradient-brand">*</Text>
+              </Field.Label>
+              <Input type="text" placeholder="First Name" {...inputStyles} />
+            </Field.Root>
+
+            <Field.Root required>
+              <Field.Label fontWeight="medium" color="gray.700" mb={2} fontSize="lg">
+                Email <Text as="span" className="text-gradient-brand">*</Text>
+              </Field.Label>
+              <Input type="email" placeholder="your@email.com" {...inputStyles} />
+            </Field.Root>
+
+            <Field.Root required>
+              <Field.Label fontWeight="medium" color="gray.700" mb={2} fontSize="lg">
+                Phone Number <Text as="span" className="text-gradient-brand">*</Text>
+              </Field.Label>
+              <Input type="text" placeholder="+1 (555) 000-000" {...inputStyles} />
+            </Field.Root>
+
+            <Field.Root required>
+              <Field.Label fontWeight="medium" color="gray.700" mb={2} fontSize="lg">
+                Message <Text as="span" className="text-gradient-brand">*</Text>
+              </Field.Label>
+              <Textarea
+                rows={4}
+                placeholder="Leave us a message..."
+                borderColor="gray.300"
+                rounded="lg"
+                px={4}
+                py={3}
+                _focus={{ ring: "2px", ringColor: "brand.500", borderColor: "transparent" }}
+              />
+            </Field.Root>
+
+            <Button
+              type="submit"
+              w="full"
+              rounded="full"
+              py={3}
+              h="auto"
+              color="white"
+              fontWeight="semibold"
+              style={{ backgroundImage: BRAND_GRADIENT }}
+              _hover={{ opacity: 0.9 }}
+              transition="all 0.3s"
+            >
+              Submit
+            </Button>
+          </Box>
+        </Flex>
+      </Grid>
+    </Box>
+  </Box>
+);
 
 export default Contact;

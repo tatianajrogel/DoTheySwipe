@@ -1,91 +1,93 @@
-import React from "react";
+import { Box, Heading, Text, Input, Button, Field, Image, Flex } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
 import Map from "./Map";
-import gps from '../../assets/images/gps.png'
-import { Link } from "react-router-dom";
+import gps from "../../assets/images/gps.png";
+import { BRAND_GRADIENT } from "../../theme";
 
-
-const LocationForm = () => {
-  return (
-    <div className="md:relative md:-mt-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 mx-auto md:mx-0 w-full  lg:max-w-5xl bg-white md:rounded-2xl md:shadow-sm ">
-    <div className={`grid grid-cols-1 px-8 gap-8 px-auto`}>
-        {/* Left Side */}
-         <div className="space-y-6">
-      {/* <div className="space-y-6 py-8  md:py-4 lg:py-8"> */}
-      <div className="mb-8 md:mb-4 lg:mb-8">
-        <h1 className="text-2xl lg:text-3xl mt-8 font-bold text-gray-800 mb-4">
-          Where <span className="text-brand"> might they use it? </span>
-        </h1>
-        <p className="text-gray-600">
-          Try to put as accurate a location as possible where the person may
-          have used Tinder. Preferably an address, or a neighborhood.
-        </p>
-      </div>
-         <form className=" flex flex-col gap-4">
-           <div className="flex flex-col ">
-            <label htmlFor="location"  className="blocktext-md lg:text-lg font-medium text-gray-700 mb-2">
-                  Location name<span className="text-gradient-brand">*</span> 
-                </label>
-                <div className="flex items-center gap-2 px-4 py-3 border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-rose-500 focus-within:border-transparent">
-          <input
-            type="Search"
-            placeholder="Search for a place or an address......"
-            className="flex-1 outline-none bg-transparent"
-            id="location"
-          />
-          {/* <svg
-            className="w-5 h-5 text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg> */}
-          <img src={gps} alt="GPS location icon" />
-        </div>
-           </div>
-        
-      </form>
-    </div>
-      {/* right Side*/}
-     <Map height="md:h-80"/>
-     
-        {/* Continue Button */}
-        <div className="md:pb-12">
-         <Link
-  to="/profile"
-  className="w-[300px] mx-auto bg-gradient-to-r from-rose-600 to-purple-600 text-white py-2 md:py-3.5 px-6 rounded-full font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
->
-  Continue
-  <svg
-    className="w-5 h-5"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
+const LocationForm = () => (
+  <Box
+    mx="auto"
+    w="full"
+    maxW={{ lg: "5xl" }}
+    bg="white"
+    rounded={{ md: "2xl" }}
+    shadow={{ md: "sm" }}
+    position={{ md: "relative" }}
+    mt={{ md: "-144px" }}
+    top={{ md: "50%" }}
+    left={{ md: "50%" }}
+    transform={{ md: "translateX(-50%)" }}
   >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M9 5l7 7-7 7"
-    />
-  </svg>
-</Link>
-        </div>
-   </div>
-    </div>
-   
-  );
-};
+    <Box px={8} display="flex" flexDirection="column" gap={8}>
+      {/* Heading */}
+      <Box mt={8}>
+        <Heading as="h1" fontSize={{ base: "2xl", lg: "3xl" }} fontWeight="bold" color="gray.800" mb={4}>
+          Where <Text as="span" color="brand.500">might they use it?</Text>
+        </Heading>
+        <Text color="gray.600">
+          Try to put as accurate a location as possible where the person may have used Tinder.
+          Preferably an address, or a neighborhood.
+        </Text>
+      </Box>
+
+      {/* Location input */}
+      <Box as="form" display="flex" flexDirection="column" gap={4}>
+        <Field.Root required>
+          <Field.Label fontWeight="medium" color="gray.700" mb={2}>
+            Location name <Text as="span" className="text-gradient-brand">*</Text>
+          </Field.Label>
+          <Flex
+            align="center"
+            gap={2}
+            px={4}
+            py={3}
+            border="1px solid"
+            borderColor="gray.300"
+            rounded="lg"
+            _focusWithin={{ ring: "2px", ringColor: "brand.500", borderColor: "transparent" }}
+          >
+            <Input
+              type="search"
+              placeholder="Search for a place or an address..."
+              border="none"
+              outline="none"
+              flex="1"
+              p={0}
+              _focus={{ ring: "none", outline: "none" }}
+            />
+            <Image src={gps} alt="GPS location icon" />
+          </Flex>
+        </Field.Root>
+      </Box>
+
+      {/* Map */}
+      <Map height="md:h-80" />
+
+      {/* Continue */}
+      <Box pb={{ md: 12 }}>
+        <Button
+          as={RouterLink}
+          to="/profile"
+          w="300px"
+          mx="auto"
+          rounded="full"
+          py={{ base: 2, md: 3.5 }}
+          px={6}
+          h="auto"
+          color="white"
+          fontWeight="medium"
+          style={{ backgroundImage: BRAND_GRADIENT }}
+          _hover={{ opacity: 0.9 }}
+          display="flex"
+          alignItems="center"
+          gap={2}
+        >
+          Continue <ChevronRight size={20} />
+        </Button>
+      </Box>
+    </Box>
+  </Box>
+);
 
 export default LocationForm;

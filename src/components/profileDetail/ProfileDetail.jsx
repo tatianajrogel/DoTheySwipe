@@ -1,110 +1,165 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-import location from "../../assets/images/location.svg"
-import capIcon from "../../assets/images/cap-icon.svg"
-import arrowLeft from "../../assets/images/arrowLeft.png"
+import { Box, Flex, Grid, Heading, Text, Badge, Button, Image, IconButton } from "@chakra-ui/react";
+import location from "../../assets/images/location.svg";
+import capIcon from "../../assets/images/cap-icon.svg";
+import arrowLeft from "../../assets/images/arrowLeft.png";
 
 const ProfileDetail = ({ profile, images }) => {
   const [current, setCurrent] = useState(0);
 
-  const prevSlide = () => {
-    setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
+  const prev = () => setCurrent((c) => (c === 0 ? images.length - 1 : c - 1));
+  const next = () => setCurrent((c) => (c === images.length - 1 ? 0 : c + 1));
 
-  const nextSlide = () => {
-    setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  const getPosition = (index) => {
+    if (index === current)
+      return { position: "absolute", width: 240, height: 320, rounded: "xl", shadow: "lg", objectFit: "cover", transition: "all 0.5s", border: "2px solid white", zIndex: 20, transform: "scale(1)" };
+    if (index === (current - 1 + images.length) % images.length)
+      return { position: "absolute", width: 176, height: 320, rounded: "xl", shadow: "md", objectFit: "cover", transition: "all 0.5s", zIndex: 10, opacity: 0.7, transform: "translateX(-48px) scale(0.9) rotate(-5deg)" };
+    if (index === (current - 2 + images.length) % images.length)
+      return { position: "absolute", width: 176, height: 320, rounded: "xl", shadow: "md", objectFit: "cover", transition: "all 0.5s", zIndex: 5, opacity: 0.7, transform: "translateX(-56px) scale(0.9) rotate(-12deg)" };
+    if (index === (current + 1) % images.length)
+      return { position: "absolute", width: 176, height: 320, rounded: "xl", shadow: "md", objectFit: "cover", transition: "all 0.5s", zIndex: 10, opacity: 0.7, transform: "translateX(48px) scale(0.9) rotate(5deg)" };
+    if (index === (current + 2) % images.length)
+      return { position: "absolute", width: 176, height: 320, rounded: "xl", shadow: "md", objectFit: "cover", transition: "all 0.5s", zIndex: 5, opacity: 0.7, transform: "translateX(56px) scale(0.9) rotate(12deg)" };
+    return { display: "none" };
   };
 
   return (
-    <div className="md:relative md:-mt-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 mx-auto md:mx-0 w-full  lg:max-w-5xl bg-white md:rounded-2xl md:shadow-sm ">
-     <section className="grid grid-cols-1  md:grid-cols-2  gap-8 py-8 md:py-14 p-6 bg-white rounded-2xl ">
-      {/* Left Side: Profile Info */}
-      <div className="flex flex-col  space-y-4">
-        <span className="w-8 h-8 flex items-center justify-center rounded-full bg-white shadow-sm"><img src={arrowLeft} alt="Go back" /></span>
-        <h2 className="text-2xl font-bold">{profile.name}</h2>
-        <p className="flex items-center gap-2 text-dark-primary">
-          <span className="flex gap-1 items-center">♂ {profile.gender}  {profile.age}</span>
-           <span className="flex gap-1 items-center"><img src={location} className="w-[12px] h-[16px]" alt="Location" /> {profile.location}</span>
-        </p>
-        <p className="text-dark-primary ">
-          <span className="flex gap-1 items-center"><img src={capIcon} className="w-[16px] h-[16px]" alt="Job" />{profile.job} </span>
-          </p>
+    <Box
+      mx="auto"
+      w="full"
+      maxW={{ lg: "5xl" }}
+      bg="white"
+      rounded={{ md: "2xl" }}
+      shadow={{ md: "sm" }}
+      position={{ md: "relative" }}
+      mt={{ md: "-144px" }}
+      top={{ md: "50%" }}
+      left={{ md: "50%" }}
+      transform={{ md: "translateX(-50%)" }}
+    >
+      <Grid
+        as="section"
+        templateColumns={{ base: "1fr", md: "1fr 1fr" }}
+        gap={8}
+        py={{ base: 8, md: 14 }}
+        p={6}
+        bg="white"
+        rounded="2xl"
+      >
+        {/* Left – info */}
+        <Flex direction="column" gap={4}>
+          <Box
+            w={8}
+            h={8}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            rounded="full"
+            bg="white"
+            shadow="sm"
+          >
+            <Image src={arrowLeft} alt="Go back" />
+          </Box>
 
-        {/* Interests */}
-        <div className="flex flex-wrap gap-2">
-          {profile.interests.map((interest) => (
-            <span
-              key={interest}
-              className="px-3 py-1 bg-gray-100 text-gray-700  text-sm rounded-full"
-            >
-              {interest}
-            </span>
-          ))}
-        </div>
+          <Heading as="h2" fontSize="2xl" fontWeight="bold">{profile.name}</Heading>
 
-        {/* About */}
-        <div className="flex flex-col gap-3">
-          <h3 className="font-semibold text-dark-primary text-lg ">About</h3>
-          <p className="text-slate-600 leading-relaxed ">{profile.about}</p>
-        </div>
-      </div>
+          <Flex align="center" gap={4} color="gray.800">
+            <Flex align="center" gap={1}>
+              ♂ {profile.gender} {profile.age}
+            </Flex>
+            <Flex align="center" gap={1}>
+              <Image src={location} w="12px" h="16px" alt="Location" />
+              {profile.location}
+            </Flex>
+          </Flex>
 
-      {/* Right Side: Image Slider */}
-      <div className="relative flex items-center self-center lg:self-end justify-center  h-72">
-        {/* Left Arrow */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-18 lg:left-30 z-30 p-1.5 bg-slate-200 opacity-70 rounded-full shadow hover:bg-gray-100"
-          aria-label="Previous photo"
+          <Flex align="center" gap={1} color="gray.800">
+            <Image src={capIcon} w="16px" h="16px" alt="Job" />
+            {profile.job}
+          </Flex>
+
+          {/* Interests */}
+          <Flex wrap="wrap" gap={2}>
+            {profile.interests.map((interest) => (
+              <Badge
+                key={interest}
+                px={3}
+                py={1}
+                bg="gray.100"
+                color="gray.700"
+                fontSize="sm"
+                rounded="full"
+                fontWeight="normal"
+              >
+                {interest}
+              </Badge>
+            ))}
+          </Flex>
+
+          {/* About */}
+          <Box>
+            <Heading as="h3" fontSize="lg" fontWeight="semibold" color="gray.800" mb={3}>
+              About
+            </Heading>
+            <Text color="gray.600" lineHeight="relaxed">{profile.about}</Text>
+          </Box>
+        </Flex>
+
+        {/* Right – image slider */}
+        <Flex
+          position="relative"
+          alignItems="center"
+          alignSelf={{ base: "center", lg: "end" }}
+          justifyContent="center"
+          h={72}
         >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
+          <IconButton
+            onClick={prev}
+            position="absolute"
+            left={{ base: "72px", lg: "120px" }}
+            zIndex={30}
+            size="sm"
+            bg="gray.200"
+            opacity={0.7}
+            rounded="full"
+            shadow="sm"
+            _hover={{ bg: "gray.100" }}
+            aria-label="Previous photo"
+          >
+            <ChevronLeft size={20} />
+          </IconButton>
 
-        {/* Images */}
-        <div className="flex items-center justify-center  relative w-full ">
-          {images.map((img, index) => {
-            let position = "hidden"; // Default hidden
-
-            if (index === current) {
-              position =
-               "absolute w-60 h-80 rounded-xl shadow-lg object-cover transition-all duration-500 border-2 border-white scale-100 z-20";
-           } else if (index === (current - 1 + images.length) % images.length) {
-              position =
-                "absolute w-44 h-80 rounded-xl shadow-md object-cover transition-all duration-500 -translate-x-12 scale-90 z-10 opacity-70 rotate-[-5deg]";
-            } else if (index === (current - 2 + images.length) % images.length) {
-              position =
-               "absolute w-44 h-80 rounded-xl shadow-md object-cover transition-all duration-500 -translate-x-14 scale-90 z-5 opacity-70 rotate-[-12deg]";
-            } else if (index === (current + 1) % images.length) {
-              position =
-               "absolute w-44 h-80 rounded-xl shadow-md object-cover transition-all duration-500 translate-x-12 scale-90 z-10 opacity-70 rotate-[5deg]";
-            } else if (index === (current + 2) % images.length) {
-              position =
-               "absolute w-44 h-80 rounded-xl shadow-md object-cover transition-all duration-500 translate-x-14 scale-90 z-5 opacity-70 rotate-[12deg]";
-            }
-
-            return (
-              <img
+          <Flex align="center" justify="center" position="relative" w="full">
+            {images.map((img, index) => (
+              <Image
                 key={index}
                 src={img}
                 alt={`Profile photo ${index + 1}`}
-                className={position}
+                {...getPosition(index)}
               />
-            );
-          })}
-        </div>
+            ))}
+          </Flex>
 
-        {/* Right Arrow */}
-        <button
-          onClick={nextSlide}
-          className="absolute right-18 lg:right-30 z-20 p-1.5 bg-slate-200 opacity-70 rounded-full shadow hover:bg-gray-100"
-          aria-label="Next photo"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </button>
-      </div>
-    </section>
-    </div>
+          <IconButton
+            onClick={next}
+            position="absolute"
+            right={{ base: "72px", lg: "120px" }}
+            zIndex={20}
+            size="sm"
+            bg="gray.200"
+            opacity={0.7}
+            rounded="full"
+            shadow="sm"
+            _hover={{ bg: "gray.100" }}
+            aria-label="Next photo"
+          >
+            <ChevronRight size={20} />
+          </IconButton>
+        </Flex>
+      </Grid>
+    </Box>
   );
 };
 

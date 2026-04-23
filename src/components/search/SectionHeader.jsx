@@ -1,64 +1,67 @@
-import React from "react";
-import profile1 from '../../assets/images/searchImage1.png'
-import profile2 from '../../assets/images/searchImage2.png'
-import profile3 from '../../assets/images/searchImage3.png'
-import profile4 from '../../assets/images/searchImage4.png'
-import profile5 from '../../assets/images/searchImage5.png'
-import profile6 from '../../assets/images/searchImage6.png'
+import { Box, Heading, Text, Image } from "@chakra-ui/react";
+import { BRAND_GRADIENT } from "../../theme";
+import profile1 from "../../assets/images/searchImage1.png";
+import profile2 from "../../assets/images/searchImage2.png";
+import profile3 from "../../assets/images/searchImage3.png";
+import profile4 from "../../assets/images/searchImage4.png";
+import profile5 from "../../assets/images/searchImage5.png";
+import profile6 from "../../assets/images/searchImage6.png";
+import vector from "../../assets/images/Vector.png";
 
-import vector from "../../assets/images/Vector.png"
+const AvatarPin = ({ src, style }) => (
+  <Image
+    src={src}
+    alt="Profile"
+    rounded="full"
+    border="2px solid"
+    borderColor="whiteAlpha.600"
+    objectFit="cover"
+    position="absolute"
+    style={style}
+  />
+);
 
-const SectionHeader = ({ title, description, children }) => {
-  return (
-    <div className="hidden relative w-full h-80 bg-gradient-brand rounded-2xl overflow-hidden md:flex  justify-center py-16 px-8">
-      {/* Background pattern/vector */}
-      <div className="absolute inset-0 bg-center"
-        style={{backgroundImage:`url(${vector})`}}
-      ></div>
+const SectionHeader = ({ title, description, children }) => (
+  <Box
+    display={{ base: "none", md: "flex" }}
+    position="relative"
+    w="full"
+    h={80}
+    rounded="2xl"
+    overflow="hidden"
+    justifyContent="center"
+    py={16}
+    px={8}
+    style={{ backgroundImage: BRAND_GRADIENT }}
+  >
+    {/* Background pattern */}
+    <Box
+      position="absolute"
+      inset={0}
+      bgImage={`url(${vector})`}
+      bgCenter="center"
+    />
 
-      {/* Small profile images */}
-      <img
-        className="absolute md:w-14 lg:w-16 md:h-14 lg:h-16 top-1/16 lg:top-1/10 left-1/50 rounded-full border-2 border-white/30 backdrop-blur-sm object-cover"
-        src={profile1}
-        alt="Profile"
-      />
-      <img
-        className="absolute md:w-10 lg:w-12 md:h-10 lg:h-12  top-[74px]  lg:top-1/3 left-1/10 rounded-full border-2 border-white/80 backdrop-blur-sm object-cover"
-        src={profile2}
-        alt="Profile"
-      />
-      <img
-        className="absolute md:w-10 lg:w-12 md:h-10 lg:h-12 top-1/12 lg:top-1/6 left-1/6 rounded-full border-2 border-white/80 backdrop-blur-sm object-cover"
-        src={profile3}
-        alt="Profile"
-      />
+    {/* Left avatars */}
+    <AvatarPin src={profile1} style={{ width: 60, height: 60, top: "6%", left: "2%" }} />
+    <AvatarPin src={profile2} style={{ width: 44, height: 44, top: "74px", left: "10%" }} />
+    <AvatarPin src={profile3} style={{ width: 44, height: 44, top: "8%", left: "16%" }} />
 
-      {/* Content */}
-      <div className="text-center text-white z-10 max-w-3xl">
-        <h1 className="text-3xl lg:text-4xl font-bold mb-4">{title}</h1>
-        <p className="text-md  opacity-90">{description}</p>
+    {/* Center content */}
+    <Box textAlign="center" color="white" zIndex={10} maxW="3xl">
+      <Heading as="h1" fontSize={{ base: "3xl", lg: "4xl" }} fontWeight="bold" mb={4}>
+        {title}
+      </Heading>
+      <Text opacity={0.9}>{description}</Text>
+    </Box>
 
-        {/* Small profile images */}
-      <img
-        className="absolute md:w-10 lg:w-12 md:h-10 lg:h-12 top-1/16 lg:top-1/10 right-1/50 rounded-full border-2 border-white/30 backdrop-blur-sm object-cover"
-        src={profile6}
-        alt="Profile"
-      />
-      <img
-        className="absolute md:w-14 lg:w-16 md:h-14 lg:h-16 top-1/6  lg:top-[92px] right-1/10 lg:right-1/12 rounded-full border-2 border-white/80 backdrop-blur-sm object-cover"
-        src={profile4}
-        alt="Profile"
-      />
-      <img
-        className="absolute md:w-10 lg:w-12 md:h-10 lg:h-12 top-1/18 lg:top-1/6 right-[150px] lg:right-[200px]  rounded-full border-2 border-white/80 backdrop-blur-sm object-cover"
-        src={profile5}
-        alt="Profile"
-      />
-      </div>
+    {/* Right avatars */}
+    <AvatarPin src={profile6} style={{ width: 44, height: 44, top: "6%", right: "2%" }} />
+    <AvatarPin src={profile4} style={{ width: 60, height: 60, top: "16%", right: "8%" }} />
+    <AvatarPin src={profile5} style={{ width: 44, height: 44, top: "8%", right: "150px" }} />
 
-      {children}
-    </div>
-  );
-};
+    {children}
+  </Box>
+);
 
 export default SectionHeader;

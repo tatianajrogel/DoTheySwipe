@@ -1,108 +1,127 @@
-import React from "react";
-import searchImage from "../../assets/images/searchImage.png"
-import { Link } from "react-router-dom";
-const SearchForm = ({layout}) => {
-  return (
-    <div className="md:relative md:-mt-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 mx-auto md:mx-0 w-full  lg:max-w-5xl bg-white md:rounded-2xl md:shadow-sm ">
-    <div className={`grid grid-cols-1 ${layout} px-auto px-8  md:pl-8  gap-8`}>
-        {/* Left Side - Contact Info */}
-      <div className="space-y-6 py-8  md:py-4 lg:py-8">
-        <div className="mb-8 md:mb-4 lg:mb-8">
-          <h2 className="text-2xl font-bold text-gray-800">
-            Search <span className="text-brand" > for a Person</span>
-          </h2>
-          <p className="text-sm lg:text-slate-600 mt-2">
+import { Box, Grid, Heading, Text, Input, Button, Field, Image } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
+import searchImage from "../../assets/images/searchImage.png";
+import { BRAND_GRADIENT } from "../../theme";
+
+const SearchForm = ({ layout }) => (
+  <Box
+    mx="auto"
+    w="full"
+    maxW={{ lg: "5xl" }}
+    bg="white"
+    rounded={{ md: "2xl" }}
+    shadow={{ md: "sm" }}
+    position={{ md: "relative" }}
+    mt={{ md: "-144px" }}
+    top={{ md: "50%" }}
+    left={{ md: "50%" }}
+    transform={{ md: "translateX(-50%)" }}
+  >
+    <Grid
+      templateColumns={{ base: "1fr", md: layout === "md:grid-cols-2" ? "1fr 1fr" : "1fr" }}
+      px={8}
+      gap={8}
+    >
+      {/* Left – form */}
+      <Box py={{ base: 8, md: 4, lg: 8 }}>
+        <Box mb={{ base: 8, md: 4, lg: 8 }}>
+          <Heading as="h2" fontSize="2xl" fontWeight="bold" color="gray.800">
+            Search <Text as="span" color="brand.500">for a Person</Text>
+          </Heading>
+          <Text fontSize="sm" color="gray.600" mt={2}>
             Find the individual you're looking for by entering specific details,
             such as their name, age, and gender.
-          </p>
-        </div>
+          </Text>
+        </Box>
 
-         <form className=" flex flex-col gap-4">
-            {/* First Name */}
-              <div className="flex flex-col ">
-                <label htmlFor="firstName"  className="blocktext-md lg:text-lg font-medium text-gray-700 mb-2">
-                  First name<span className="text-gradient-brand">*</span> 
-                </label>
-                <input
+        <Box as="form" display="flex" flexDirection="column" gap={4}>
+          {/* First name */}
+          <Field.Root required>
+            <Field.Label fontWeight="medium" color="gray.700" mb={2}>
+              First name <Text as="span" className="text-gradient-brand">*</Text>
+            </Field.Label>
+            <Input
+              type="text"
+              placeholder="First Name"
+              borderColor="gray.300"
+              rounded="lg"
+              px={4}
+              py={2}
+              _focus={{ ring: "2px", ringColor: "brand.500", outline: "none" }}
+            />
+          </Field.Root>
 
-                  type="text"
-                  id="firstName"
-                  required
-                  placeholder="First Name"
-                  className="w-full px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring focus:ring-brand focus:outline-none"
-                />
-              </div>
+          <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
+            {/* Age */}
+            <Field.Root required>
+              <Field.Label fontWeight="medium" color="gray.700" mb={2}>
+                Age <Text as="span" className="text-gradient-brand">*</Text>
+              </Field.Label>
+              <Input
+                type="number"
+                placeholder="Enter age"
+                borderColor="gray.300"
+                rounded="lg"
+                px={4}
+                py={2}
+                _focus={{ ring: "2px", ringColor: "brand.500", outline: "none" }}
+              />
+            </Field.Root>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex flex-col ">
-                <label htmlFor="age"  className="blocktext-md lg:text-lg font-medium text-gray-700 mb-2">
-                  Age<span className="text-gradient-brand">*</span> 
-                </label>
-                <input
-
-                  type="Number"
-                  id="age"
-                  required
-                  placeholder="Enter age"
-                  className="w-full px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring focus:ring-brand focus:outline-none"
-                />
-              </div>
-
-             <div className="flex flex-col mb-2">
-                <label htmlFor="gender"  className="block text-md lg:text-lg font-medium text-gray-700 mb-2">
-                  Gender<span className="text-gradient-brand">*</span> 
-                </label>
-              <select 
-              required
-              id="gender"
-                  className="w-full px-4 py-2 lg:py-2.5 border border-gray-300 rounded-lg focus:ring focus:ring-brand focus:outline-none"
+            {/* Gender */}
+            <Field.Root required>
+              <Field.Label fontWeight="medium" color="gray.700" mb={2}>
+                Gender <Text as="span" className="text-gradient-brand">*</Text>
+              </Field.Label>
+              <Box
+                as="select"
+                borderWidth="1px"
+                borderColor="gray.300"
+                rounded="lg"
+                px={4}
+                py={2}
+                w="full"
+                bg="white"
+                _focus={{ ring: "2px", ringColor: "brand.500", outline: "none" }}
               >
                 <option value="">Choose</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
-              </select>
-            </div>
-          </div>
-          {/* Submit button  */}
-              <Link
-      to="/location" // 👈 directly page ka path
-      className="w-[300px] mx-auto bg-gradient-to-r from-rose-600 to-purple-600 text-white py-2 md:py-3.5 px-6 rounded-full font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
-    >
-      Continue
-      <svg
-        className="w-5 h-5"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M9 5l7 7-7 7"
-        />
-      </svg>
-    </Link>
-        </form>
+              </Box>
+            </Field.Root>
+          </Grid>
 
-       
-       
-     
-      </div>
-      {/* right Side - Contact Info */}
-      <div
-        className="flex flex-col order-1 md:order-2 self-end text-white">
-        <div className="" >
-          <img
-            src={searchImage}
-            alt="Search illustration"
-            className="object-cover w-full  lg:h-auto"/>
-        </div>
-      </div>
-    </div>
-    </div>
-  );
-};
+          {/* Continue */}
+          <Button
+            as={RouterLink}
+            to="/location"
+            w="300px"
+            mx="auto"
+            rounded="full"
+            py={{ base: 2, md: 3.5 }}
+            px={6}
+            h="auto"
+            color="white"
+            fontWeight="medium"
+            style={{ backgroundImage: BRAND_GRADIENT }}
+            _hover={{ opacity: 0.9 }}
+            display="flex"
+            alignItems="center"
+            gap={2}
+          >
+            Continue <ChevronRight size={20} />
+          </Button>
+        </Box>
+      </Box>
+
+      {/* Right – illustration */}
+      <Box display="flex" flexDirection="column" order={{ base: -1, md: 1 }} alignSelf="end" color="white">
+        <Image src={searchImage} alt="Search illustration" objectFit="cover" w="full" />
+      </Box>
+    </Grid>
+  </Box>
+);
 
 export default SearchForm;

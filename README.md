@@ -17,22 +17,22 @@ Scope of work:
 - Translated Figma designs into pixel-perfect React components
 - Built full component library matching design tokens exactly
 - Implemented responsive layouts across mobile and desktop
-- Integrated Chakra UI design system with custom brand tokens
+- Integrated Chakra UI v3 design system with custom brand tokens via `createSystem`
 - Configured PWA with vite-plugin-pwa for installability and offline caching
 - Structured clean, modular component architecture for easy handoff
 
 ---
 
 ## Tech Stack
-| Technology | Version |
-|---|---|
-| React | 19 |
-| Vite | 7 |
-| React Router DOM | 7 |
-| **Chakra UI** | 3.35 |
-| Swiper | 11 |
-| Lucide React | latest |
-| vite-plugin-pwa | latest |
+| Technology | Version | Notes |
+|---|---|---|
+| React | 19 | |
+| Vite | 7 | |
+| React Router DOM | 7 | |
+| **Chakra UI** | 3.35 | Design system — replaces Tailwind CSS |
+| Swiper | 11 | Carousel |
+| Lucide React | latest | Icons |
+| vite-plugin-pwa | latest | PWA support |
 
 ---
 
@@ -92,6 +92,7 @@ DoTheySwipe/
 │   ├── pages/
 │   ├── App.jsx
 │   ├── main.jsx
+│   ├── theme.js          ← Chakra UI custom system (brand colors + global CSS)
 │   └── index.css
 ├── index.html
 ├── vite.config.js

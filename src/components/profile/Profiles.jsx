@@ -1,76 +1,107 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { Box, Button, Flex, Text, Image } from "@chakra-ui/react";
+import { ChevronRight } from "lucide-react";
 import Map from "../location/Map";
 import mapIcon from "../../assets/images/mapIcon.png";
 import listingIcon from "../../assets/images/listingIcon.svg";
 import Listing from "./Listing";
+import { BRAND_GRADIENT } from "../../theme";
 
 const Profiles = () => {
   const [showMap, setShowMap] = useState(false);
 
   return (
-    <div className="md:relative md:-mt-36 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 mx-auto md:mx-0 w-full  lg:max-w-5xl bg-white md:rounded-2xl md:shadow-sm ">
-    <div className="grid grid-col-1 gap-4">
-      {/* Desktop Layout */}
-      <div className="hidden md:grid md:grid-cols-1 gap-4">
-        {/*Map*/}
-        <Map height="h-64" />
+    <Box
+      mx="auto"
+      w="full"
+      maxW={{ lg: "5xl" }}
+      bg="white"
+      rounded={{ md: "2xl" }}
+      shadow={{ md: "sm" }}
+      position={{ md: "relative" }}
+      mt={{ md: "-144px" }}
+      top={{ md: "50%" }}
+      left={{ md: "50%" }}
+      transform={{ md: "translateX(-50%)" }}
+    >
+      <Box display="flex" flexDirection="column" gap={4}>
+        {/* Desktop: map + listing */}
+        <Box display={{ base: "none", md: "flex" }} flexDirection="column" gap={4}>
+          <Map height="h-64" />
+          <Listing />
+        </Box>
 
-
-        {/* Listing */}
-        <Listing />
-      </div>
-
-      {/* Mobile Layout (Toggle Between Map & Listing) */}
-     <div className="block md:hidden">
-  {showMap ? (
-    <div className="transition-all duration-500 ease-in-out transform opacity-100 scale-100">
-      <Map height="h-[100vh]" />
-    </div>
-  ) : (
-    <div className="transition-all duration-500 ease-in-out transform opacity-100 scale-100">
-      <Listing />
-    </div>
-  )}
-</div>
-
-      {/* Mobile Sticky Section */}
-      <div className="fixed bottom-0 right-0 left-0 flex items-center justify-between gap-4 w-full border-t border-gray-200 px-4 py-4 bg-white shadow-lg md:hidden z-50">
-        {/* Toggle Icon */}
-        <button
-          onClick={() => setShowMap(!showMap)}
-          className="text-gray-700 hover:text-rose-600 w-10 h-10 p-1.5 flex justify-center bg-white rounded-full border border-brand transition-colors"
-        >
+        {/* Mobile: toggle between map and listing */}
+        <Box display={{ base: "block", md: "none" }}>
           {showMap ? (
-            <img src={listingIcon} alt="Listing" className="" />
+            <Map height="h-[100vh]" />
           ) : (
-            <img src={mapIcon} alt="Map" className="" />
+            <Listing />
           )}
-        </button>
+        </Box>
 
-        {/* Continue Button */}
-        <Link
-          to="/profileDetails"
-          className="w-full bg-gradient-to-r from-rose-600 to-purple-600 text-white py-2 px-6 rounded-full font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+        {/* Mobile sticky footer */}
+        <Flex
+          display={{ base: "flex", md: "none" }}
+          position="fixed"
+          bottom={0}
+          left={0}
+          right={0}
+          align="center"
+          justify="space-between"
+          gap={4}
+          w="full"
+          borderTop="1px solid"
+          borderColor="gray.200"
+          px={4}
+          py={4}
+          bg="white"
+          shadow="lg"
+          zIndex={50}
         >
-          Continue
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          <Button
+            onClick={() => setShowMap(!showMap)}
+            variant="outline"
+            borderColor="brand.500"
+            rounded="full"
+            w={10}
+            h={10}
+            p={1.5}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            _hover={{ color: "brand.500" }}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </Link>
-      </div>
-    </div>
-    </div>
+            {showMap ? (
+              <Image src={listingIcon} alt="Listing" />
+            ) : (
+              <Image src={mapIcon} alt="Map" />
+            )}
+          </Button>
+
+          <Button
+            as={RouterLink}
+            to="/profileDetails"
+            flex="1"
+            rounded="full"
+            py={2}
+            px={6}
+            h="auto"
+            color="white"
+            fontWeight="medium"
+            style={{ backgroundImage: BRAND_GRADIENT }}
+            _hover={{ opacity: 0.9 }}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            gap={2}
+          >
+            Continue <ChevronRight size={20} />
+          </Button>
+        </Flex>
+      </Box>
+    </Box>
   );
 };
 
