@@ -4,8 +4,9 @@
 DoTheySwipe is a Progressive Web App (PWA) built with React and Vite. 
 This project was a full Figma-to-code implementation — I translated 
 the complete UI/UX design into pixel-perfect React components using 
-Tailwind CSS, then configured it as an installable PWA with offline 
-support and native-like behavior across iOS, Android, and desktop.
+**Chakra UI** for a cohesive design system with full accessibility, 
+then configured it as an installable PWA with offline support and 
+native-like behavior across iOS, Android, and desktop.
 
 ---
 
@@ -16,6 +17,7 @@ Scope of work:
 - Translated Figma designs into pixel-perfect React components
 - Built full component library matching design tokens exactly
 - Implemented responsive layouts across mobile and desktop
+- Integrated Chakra UI design system with custom brand tokens
 - Configured PWA with vite-plugin-pwa for installability and offline caching
 - Structured clean, modular component architecture for easy handoff
 
@@ -27,9 +29,8 @@ Scope of work:
 | React | 19 |
 | Vite | 7 |
 | React Router DOM | 7 |
-| Tailwind CSS | 4 |
+| **Chakra UI** | 3.35 |
 | Swiper | 11 |
-| Radix UI | 2 |
 | Lucide React | latest |
 | vite-plugin-pwa | latest |
 
