@@ -1,7 +1,10 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
+import { Box, Flex, Heading, Text, Button, Spinner } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import Navbar from "./components/header/Navbar";
 import Footer from "./components/footer/Footer";
+import { BRAND_GRADIENT } from "./theme";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -14,20 +17,38 @@ const Profile = lazy(() => import("./pages/Profile"));
 const ProfileDetails = lazy(() => import("./pages/ProfileDetails"));
 
 const NotFound = () => (
-  <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
-    <h1 className="text-6xl font-bold text-brand mb-4">404</h1>
-    <p className="text-xl text-slate-700 mb-8">Page not found.</p>
-    <a href="/" className="px-8 py-3 bg-gradient-to-r from-brand to-brand-end text-white rounded-full font-semibold hover:shadow-lg transition-all">
+  <Flex direction="column" align="center" justify="center" minH="60vh" textAlign="center" px={4}>
+    <Heading fontSize="6xl" style={{ backgroundImage: BRAND_GRADIENT, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }} mb={4}>
+      404
+    </Heading>
+    <Text fontSize="xl" color="slate.700" mb={8}>Page not found.</Text>
+    <Button
+      as={RouterLink}
+      to="/"
+      rounded="full"
+      px={8}
+      py={3}
+      fontWeight="semibold"
+      color="white"
+      style={{ backgroundImage: BRAND_GRADIENT }}
+      _hover={{ boxShadow: "lg" }}
+    >
       Go Home
-    </a>
-  </div>
+    </Button>
+  </Flex>
 );
 
 function App() {
   return (
-    <div>
+    <Box>
       <Navbar />
-      <Suspense fallback={<div className="flex items-center justify-center min-h-[60vh]"><div className="w-8 h-8 border-4 border-brand border-t-transparent rounded-full animate-spin" /></div>}>
+      <Suspense
+        fallback={
+          <Flex align="center" justify="center" minH="60vh">
+            <Spinner size="lg" color="brand.500" />
+          </Flex>
+        }
+      >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -42,7 +63,7 @@ function App() {
         </Routes>
       </Suspense>
       <Footer />
-    </div>
+    </Box>
   );
 }
 
