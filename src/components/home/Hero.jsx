@@ -1,47 +1,74 @@
 import { ChevronRight } from "lucide-react";
-import heroImge from "../../assets/images/heroImage.png"
-import { Link } from "react-router-dom";
+import { Box, Flex, Grid, Heading, Text, Button, Image, Container } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
+import heroImage from "../../assets/images/heroImage.png";
+import { BRAND_GRADIENT } from "../../theme";
 
-const Hero = () => {
-  return (
-    <div className="lg:min-h-screen mt-16 lg:mt-12 flex items-center justify-center md:px-4 py-16 ">
-      <div className="container max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        {/* Left Column - Content */}
-        <div className="text-center px-4 md:px-0 md:text-left">
-          <h1 className="text-4xl md:text-2xl lg:text-5xl  font-bold text-slate/950 mb-6">
-            <span className="text-brand">Find out </span> if they are secretly on image Tinder
-          </h1>
+const Hero = () => (
+  <Box
+    minH={{ lg: "100vh" }}
+    mt={{ base: 16, lg: 12 }}
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+    px={{ md: 4 }}
+    py={16}
+  >
+    <Container maxW="6xl">
+      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={12} alignItems="center">
+        {/* Left */}
+        <Box textAlign={{ base: "center", md: "left" }} px={{ base: 4, md: 0 }}>
+          <Heading
+            as="h1"
+            fontSize={{ base: "4xl", md: "2xl", lg: "5xl" }}
+            fontWeight="bold"
+            color="gray.950"
+            mb={6}
+          >
+            <Text as="span" color="brand.500">Find out </Text>
+            if they are secretly on Tinder
+          </Heading>
 
-          <div className="mb-8">
-            <p className="md:text-lg lg:text-2xl  text-slate-700 mb-4">
-              Did you know that <span className="font-bold">42% </span>of Tinder users already have a partner?
-            </p>
-            <p className="lg:text-2xl  text-slate-700 mb-4">
+          <Box mb={8}>
+            <Text fontSize={{ md: "lg", lg: "2xl" }} color="gray.700" mb={4}>
+              Did you know that <strong>42%</strong> of Tinder users already have a partner?
+            </Text>
+            <Text fontSize={{ lg: "2xl" }} color="gray.700" mb={4}>
               Discover the truth — we help hundreds find out if their partner is using dating apps.
-            </p>
-          </div>
+            </Text>
+          </Box>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-8">
-            <Link
-            to='/about'
+          <Flex
+            direction={{ base: "column", sm: "row" }}
+            gap={4}
+            justify={{ base: "center", md: "start" }}
+            mb={8}
+          >
+            <Button
+              as={RouterLink}
+              to="/about"
+              rounded="full"
+              px={8}
+              py={4}
+              h="auto"
+              color="white"
+              fontWeight="semibold"
+              style={{ backgroundImage: BRAND_GRADIENT }}
+              _hover={{ transform: "scale(1.05)", boxShadow: "xl" }}
+              transition="all 0.2s"
             >
-            <button className="px-8 py-4 bg-gradient-to-r from-brand to-brand-end text-white rounded-full font-semibold flex items-center justify-center gap-2 transition-transform hover:scale-105 shadow-lg hover:shadow-xl">
               Search on Tinder <ChevronRight size={20} />
-            </button>
-            </Link>
-          </div>
+            </Button>
+          </Flex>
+        </Box>
 
-        </div>
-
-        {/* Right Column - Image */}
-        <div className="p-6  flex">
-          <img src={heroImge} className=" rounded-b-full w-full h-full" alt="Woman using dating app on her phone" />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-
+        {/* Right */}
+        <Box p={6} display="flex">
+          <Image src={heroImage} rounded="full" roundedTop="none" w="full" h="full" alt="Woman using dating app on her phone" />
+        </Box>
+      </Grid>
+    </Container>
+  </Box>
+);
 
 export default Hero;
