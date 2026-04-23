@@ -1,186 +1,181 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Search, Menu, X } from "lucide-react"; // icons
-import logo from "../../assets/images/logo.png"
+import { Search, Menu, X } from "lucide-react";
+import {
+  Box, Flex, HStack, IconButton, Collapsible, Image, Text,
+} from "@chakra-ui/react";
+import logo from "../../assets/images/logo.png";
+import { BRAND_GRADIENT } from "../../theme";
+
+const NAV_LINKS = [
+  { to: "/", label: "Home", end: true },
+  { to: "/about", label: "About Us" },
+  { to: "/faq", label: "FAQ's" },
+];
+
+const navLinkStyle = ({ isActive }) => ({
+  fontWeight: 500,
+  transition: "color 0.2s",
+  color: isActive ? "#E11D48" : "#121926",
+  textDecoration: "none",
+});
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
- 
-const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen((prev) => {
+      document.body.style.overflow = prev ? "auto" : "hidden";
+      return !prev;
+    });
+  };
 
-const toggleMenu = () => {
-  setIsMenuOpen((prev) => {
-    if (!prev) {
-      document.body.style.overflow = "hidden"; 
-    } else {
-      document.body.style.overflow = "auto"; 
-    }
-    return !prev; // state update
-  });
-};
-
-
-
-  // common classes for links
-  const linkClasses = "transition-colors duration-300 font-medium";
-  const activeClasses = "text-brand"; // highlighted link
-  const inactiveClasses = "text-dark-nav hover:text-brand";
+  const close = () => {
+    setIsOpen(false);
+    document.body.style.overflow = "auto";
+  };
 
   return (
-    
-  
-
-
-    <header className=" md:p-5 md:px-5 fixed top-0 right-0 z-50 left-0 bg-cover shadow-sm md:shadow-none  md:bg-transparent">
-  {/* Navbar */}
-  <nav className="bg-slate-100 md:bg-white md:rounded-xl  shadow-md pt-4 md:p-4 relative z-50">
-   <div className="">
- <div className="container mx-auto flex justify-between  items-center">
-      {/* Logo */}
-      <div className="flex items-center pl-4 md:pl-0 ">
-        <span className="text-2xl font-bold flex items-center gap-2">
-          <img src={logo} className="w-8 lg:w-9" alt="DoTheySwipe logo" />
-          <span className="text-gradient-brand">
-            DoTheySwipe
-          </span>
-        </span>
-      </div>
-
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex space-x-8 items-center">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `${linkClasses} ${isActive ? activeClasses : inactiveClasses}`
-              }
-              end
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                `${linkClasses} ${isActive ? activeClasses : inactiveClasses}`
-              }
-            >
-              About Us
-            </NavLink>
-            <NavLink
-              to="/faq"
-              className={({ isActive }) =>
-                `${linkClasses} ${isActive ? activeClasses : inactiveClasses}`
-              }
-            >
-              FAQ&apos;s
-            </NavLink>
-            <NavLink
-              to="/search"
-              className="px-5 py-2.5 rounded-full font-semibold transition-all duration-300 relative group overflow-hidden"
-            >
-              {/* Gradient border */}
-              <span className="absolute inset-0 bg-gradient-brand rounded-full"></span>
-
-              {/* White background */}
-              <span className="absolute inset-0.5 bg-white rounded-full"></span>
-
-              {/* Gradient text */}
-              <span className="relative text-gradient-brand">
-                Search on Tinder
-              </span>
-            </NavLink>
-    
-      </div>
-
-      {/* Mobile Menu + Search */}
-      <div className="flex items-center space-x-4 pr-9 md:pr-0  md:hidden">
-        <button aria-label="Search" className="text-xl">
-          <Search size={24} className="text-dark-nav" />
-        </button>
-
-        {/* Hamburger */}
-        <button
-          className="text-2xl focus:outline-none"
-          onClick={toggleMenu}
-          aria-label="Toggle Menu"
-        >
-          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-    </div>
-     {/* Mobile Navigation */}
-    <div
-      className={`md:hidden overflow-hidden bg-white mt-4 border border-gray-300 transition-all duration-500 ease-in-out ${
-        isMenuOpen ? "max-h-96 opacity-100 mt-4 pt-4" : "max-h-0 opacity-0"
-      }`}
+    <Box
+      as="header"
+      position="fixed"
+      top={0}
+      left={0}
+      right={0}
+      zIndex={50}
+      px={{ base: 0, md: 5 }}
+      py={{ base: 0, md: 5 }}
     >
-      <div className="flex flex-col space-y-4 px-4  relative ">
-        {/* ...Mobile NavLinks*/}
-        <div className="flex flex-col mb-6 space-y-4">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `${linkClasses} py-2 ${
-                  isActive ? activeClasses : inactiveClasses
-                }`
-              }
-              end
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                `${linkClasses} py-2 ${
-                  isActive ? activeClasses : inactiveClasses
-                }`
-              }
-              onClick={() => setIsMenuOpen(false)}
-            >
-              About Us
-            </NavLink>
-            <NavLink
-              to="/faq"
-              className={({ isActive }) =>
-                `${linkClasses} py-2 ${
-                  isActive ? activeClasses : inactiveClasses
-                }`
-              }
-              onClick={() => setIsMenuOpen(false)}
-            >
-              FAQ&apos;s
-            </NavLink>
-            <NavLink
+      <Box
+        as="nav"
+        bg="white"
+        rounded={{ base: "none", md: "xl" }}
+        shadow="md"
+        pt={{ base: 4, md: 0 }}
+        p={{ base: 0, md: 4 }}
+        position="relative"
+        zIndex={50}
+      >
+        <Flex
+          maxW="container.xl"
+          mx="auto"
+          justify="space-between"
+          align="center"
+        >
+          {/* Logo */}
+          <Flex align="center" gap={2} pl={{ base: 4, md: 0 }}>
+            <Image src={logo} w={{ base: "32px", lg: "36px" }} alt="DoTheySwipe logo" />
+            <Text fontSize="2xl" fontWeight="bold" className="text-gradient-brand">
+              DoTheySwipe
+            </Text>
+          </Flex>
+
+          {/* Desktop nav */}
+          <HStack gap={8} display={{ base: "none", md: "flex" }} align="center">
+            {NAV_LINKS.map(({ to, label, end }) => (
+              <NavLink key={to} to={to} end={end} style={navLinkStyle}>
+                {label}
+              </NavLink>
+            ))}
+
+            {/* Gradient-border CTA */}
+            <Box
+              as={NavLink}
               to="/search"
-              className="px-5 py-3 rounded-full font-semibold transition-all duration-300 relative group overflow-hidden"
-              onClick={() => setIsMenuOpen(false)}
+              px={5}
+              py={2.5}
+              rounded="full"
+              fontWeight="semibold"
+              display="inline-flex"
+              alignItems="center"
+              style={{
+                background:
+                  "linear-gradient(white, white) padding-box, linear-gradient(to right, #E11D48, #A51CA9) border-box",
+                border: "2px solid transparent",
+                textDecoration: "none",
+              }}
             >
-              <span className="absolute inset-0 bg-gradient-brand rounded-full"></span>
-              <span className="absolute inset-0.5 bg-white rounded-full"></span>
-              <span className="relative flex justify-center text-gradient-brand">
-                Search on Tinder
-              </span>
-            </NavLink>
-          </div>
-      </div>
-    </div>
-   </div>
-   
-   
-  </nav>
+              <Text className="text-gradient-brand">Search on Tinder</Text>
+            </Box>
+          </HStack>
 
-  {/* Overlay (only mobile) */}
-  {isMenuOpen && (
-    <div
-      className="fixed inset-0 bg-slate-900/50  "
-      onClick={() => setIsMenuOpen(false)} 
-    ></div>
-  )}
-</header>
+          {/* Mobile: search + hamburger */}
+          <HStack gap={4} pr={9} display={{ base: "flex", md: "none" }}>
+            <Box as="button" aria-label="Search">
+              <Search size={24} color="#121926" />
+            </Box>
+            <IconButton
+              aria-label="Toggle Menu"
+              variant="ghost"
+              onClick={toggle}
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </IconButton>
+          </HStack>
+        </Flex>
 
+        {/* Mobile menu */}
+        <Collapsible.Root open={isOpen}>
+          <Collapsible.Content>
+            <Box
+              display={{ base: "block", md: "none" }}
+              bg="white"
+              mt={4}
+              borderTop="1px solid"
+              borderColor="gray.200"
+            >
+              <Flex direction="column" gap={4} px={4} pb={6} pt={4}>
+                {NAV_LINKS.map(({ to, label, end }) => (
+                  <NavLink
+                    key={to}
+                    to={to}
+                    end={end}
+                    onClick={close}
+                    style={(s) => ({
+                      ...navLinkStyle(s),
+                      paddingTop: "8px",
+                      paddingBottom: "8px",
+                    })}
+                  >
+                    {label}
+                  </NavLink>
+                ))}
 
+                <Box
+                  as={NavLink}
+                  to="/search"
+                  px={5}
+                  py={3}
+                  rounded="full"
+                  fontWeight="semibold"
+                  display="flex"
+                  justifyContent="center"
+                  onClick={close}
+                  style={{
+                    background:
+                      "linear-gradient(white, white) padding-box, linear-gradient(to right, #E11D48, #A51CA9) border-box",
+                    border: "2px solid transparent",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Text className="text-gradient-brand">Search on Tinder</Text>
+                </Box>
+              </Flex>
+            </Box>
+          </Collapsible.Content>
+        </Collapsible.Root>
+      </Box>
 
-
+      {/* Overlay */}
+      {isOpen && (
+        <Box
+          position="fixed"
+          inset={0}
+          bg="blackAlpha.600"
+          onClick={close}
+        />
+      )}
+    </Box>
   );
 };
 
