@@ -1,19 +1,37 @@
-import React from 'react'
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { BRAND_GRADIENT } from "../../theme";
 
-// Card Components
-const Card = ({ icon, title, description}) => {
-  return (
-    <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col items-center text-center">
-      <div className="relative mb-6">
-        <div className="w-20 h-20 bg-gradient-to-r from-brand to-brand-end rounded-full flex items-center justify-center text-white">
-          {icon}
-        </div>
-        
-      </div>
-      <h3 className="text-xl font-bold text-gray-900 mb-4">{title}</h3>
-      <p className="text-gray-600">{description}</p>
-    </div>
-  );
-};
+const Card = ({ icon, title, description }) => (
+  <Box
+    bg="white"
+    rounded="2xl"
+    p={8}
+    shadow="lg"
+    _hover={{ shadow: "xl", transform: "translateY(-8px)" }}
+    transition="all 0.3s"
+    display="flex"
+    flexDirection="column"
+    alignItems="center"
+    textAlign="center"
+  >
+    <Box mb={6}>
+      <Flex
+        w={20}
+        h={20}
+        rounded="full"
+        align="center"
+        justify="center"
+        color="white"
+        style={{ backgroundImage: BRAND_GRADIENT }}
+      >
+        {icon}
+      </Flex>
+    </Box>
+    <Heading as="h3" fontSize="xl" fontWeight="bold" color="gray.900" mb={4}>
+      {title}
+    </Heading>
+    <Text color="gray.600">{description}</Text>
+  </Box>
+);
 
-export default Card
+export default Card;

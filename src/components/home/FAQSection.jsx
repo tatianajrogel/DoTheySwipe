@@ -1,36 +1,59 @@
+import { Box, Flex, Heading, Text, Button, Accordion } from "@chakra-ui/react";
 import FAQItem from "./FAQItem";
 import { faqItems } from "../../data/faqData";
 
-const FAQSection = () => {
-  return (
-    <section className="py-16 px-4 rounded-xl">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row justify-between items-scenter  mb-16">
-         <div>
-             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Frequently <span className="text-gradient-brand">Asked Questions.</span>
-          </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+const FAQSection = () => (
+  <Box as="section" py={16} px={4} rounded="xl">
+    <Box maxW="6xl" mx="auto">
+      <Flex
+        direction={{ base: "column", lg: "row" }}
+        justify="space-between"
+        align={{ lg: "center" }}
+        mb={16}
+        gap={8}
+      >
+        <Box>
+          <Heading as="h2" fontSize={{ base: "4xl", md: "5xl" }} fontWeight="bold" color="gray.900" mb={4}>
+            Frequently{" "}
+            <Text as="span" className="text-gradient-brand">Asked Questions.</Text>
+          </Heading>
+          <Text fontSize="xl" color="gray.700" maxW="3xl">
             Answers to Common Questions About "DoTheySwipe"
-          </p>
-         </div>
+          </Text>
+        </Box>
 
-          <div className="text-center mt-12">
-          <button className="px-8 py-4 self-start  text-slate-950 border border-slate-700 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+        <Box>
+          <Button
+            variant="outline"
+            rounded="full"
+            px={8}
+            py={4}
+            h="auto"
+            fontWeight="semibold"
+            color="gray.800"
+            borderColor="gray.700"
+            _hover={{ boxShadow: "lg" }}
+            transition="all 0.3s"
+          >
             View all FAQs
-          </button>
-        </div>
-        </div>
+          </Button>
+        </Box>
+      </Flex>
 
-        <div className="max-w-6xl mx-auto bg-white px-5 rounded-xl">
+      <Box maxW="6xl" mx="auto" bg="white" px={5} rounded="xl">
+        <Accordion.Root collapsible>
           {faqItems.map((item) => (
-            <FAQItem key={item.id} question={item.question} answer={item.answer} />
+            <FAQItem
+              key={item.id}
+              value={String(item.id)}
+              question={item.question}
+              answer={item.answer}
+            />
           ))}
-        </div>
-
-      </div>
-    </section>
-  );
-};
+        </Accordion.Root>
+      </Box>
+    </Box>
+  </Box>
+);
 
 export default FAQSection;
