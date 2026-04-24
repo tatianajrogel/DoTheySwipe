@@ -1,110 +1,90 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import {
+  Box, Flex, HStack, Image, Text, Separator,
+} from "@chakra-ui/react";
 import SocialIcon from "./SocialIcon";
-import logo from '../../assets/images/logo.png'
-import { useLocation } from "react-router-dom";
+import logo from "../../assets/images/logo.png";
 
-  const socialLinks = [
-    { href: "https://facebook.com/", label: "Facebook", Icon: Facebook, color: "text-blue-600" },
-    { href: "https://twitter.com/", label: "Twitter", Icon: Twitter, color: "text-sky-500" },
-    { href: "https://linkedin.com/", label: "LinkedIn", Icon: Linkedin, color: "text-blue-700" },
-    { href: "https://instagram.com/", label: "Instagram", Icon: Instagram, color: "text-brand" },
-  ];
+const socialLinks = [
+  { href: "https://facebook.com/", label: "Facebook", Icon: Facebook },
+  { href: "https://twitter.com/", label: "Twitter", Icon: Twitter },
+  { href: "https://linkedin.com/", label: "LinkedIn", Icon: Linkedin },
+  { href: "https://instagram.com/", label: "Instagram", Icon: Instagram },
+];
+
+const NAV_LINKS = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About Us" },
+  { to: "/faq", label: "FAQ's" },
+  { to: "/privacy-policy", label: "Privacy Policy" },
+  { to: "/contact", label: "Contact Us" },
+];
 
 const Footer = () => {
   const location = useLocation();
-
   const isMapPage = location.pathname === "/profile";
-  
+
+  if (isMapPage) return <Box display={{ base: "none", md: "block" }} as="footer" />;
+
   return (
-    
-    <footer className={`text-black sm:pb-10 sm:px-4 ${isMapPage ? "hidden md:block" : "block"}`}>
-      <div className="max-w-6xl rounded-xl px-4 bg-gray-100 pt-6 md:pt-16 pb-6 mx-auto">
-        {/* Logo and Navigation */}
-        <div className="flex flex-col justify-center items-center md:mb-4">
-          {/* Logo */}
-          <div className="text-2xl font-bold flex items-center gap-2 mb-6">
-          <img src={logo} className="w-8 lg:w-9"  alt="DoTheySwipe logo" />
-            <NavLink to="/" className="text-2xl md:text-5xl font-bold">
-              <span className="bg-gradient-to-r from-brand to-brand-end bg-clip-text text-transparent">
+    <Box as="footer" pb={{ sm: 10 }} px={{ sm: 4 }}>
+      <Box
+        maxW="6xl"
+        mx="auto"
+        bg="gray.100"
+        rounded="xl"
+        px={4}
+        pt={{ base: 6, md: 16 }}
+        pb={6}
+      >
+        {/* Logo + Nav */}
+        <Flex direction="column" align="center" mb={{ base: 0, md: 4 }}>
+          <Flex align="center" gap={2} mb={6}>
+            <Image src={logo} w={{ base: "32px", lg: "36px" }} alt="DoTheySwipe logo" />
+            <NavLink to="/" style={{ textDecoration: "none" }}>
+              <Text fontSize={{ base: "2xl", md: "5xl" }} fontWeight="bold" className="text-gradient-brand">
                 DoTheySwipe
-              </span>
+              </Text>
             </NavLink>
-          </div>
+          </Flex>
 
-          {/* Navigation Links */}
-          <nav className="flex flex-wrap justify-center text-sm md:text-lg gap-6 md:gap-8 mb-6">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `hover:text-brand transition-colors ${
-                  isActive ? "text-brand" : "text-black"
-                }`
-              }
-            >
-              Home
-            </NavLink>
+          <Flex as="nav" wrap="wrap" justify="center" gap={{ base: 6, md: 8 }} mb={6} fontSize={{ base: "sm", md: "lg" }}>
+            {NAV_LINKS.map(({ to, label }) => (
+              <NavLink
+                key={to}
+                to={to}
+                style={({ isActive }) => ({
+                  color: isActive ? "#E11D48" : "#0f172a",
+                  textDecoration: "none",
+                  transition: "color 0.2s",
+                })}
+              >
+                {label}
+              </NavLink>
+            ))}
+          </Flex>
+        </Flex>
 
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                `hover:text-brand transition-colors ${
-                  isActive ? "text-brand" : "text-slate-950"
-                }`
-              }
-            >
-              About Us
-            </NavLink>
+        <Separator borderColor="gray.300" />
 
-            <NavLink
-              to="/faqs"
-              className={({ isActive }) =>
-                `hover:text-brand transition-colors ${
-                  isActive ? "text-brand" : "text-slate-950"
-                }`
-              }
-            >
-              FAQ's
-            </NavLink>
-<NavLink
-              to="/privacy-policy"
-              className={({ isActive }) =>
-                `hover:text-brand transition-colors ${
-                  isActive ? "text-brand" : "text-slate-950"
-                }`
-              }
-            >
-              Privacy Policy
-            </NavLink>
-
-           <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                `hover:text-brand transition-colors ${
-                  isActive ? "text-brand" : "text-slate-950"
-                }`
-              }
-            >
-              Contact Us
-            </NavLink>
-          </nav>
-        </div>
-
-        {/* Copyright + Social Links */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-gray-300">
-          <p className="text-dark-footer mb-4 md:mb-0">
-            © 2024 All Rights Reserved dotheyswipe.com
-          </p>
-
-          {/* Social Icons */}
-           <div className="flex justify-center space-x-3">
-        {socialLinks.map((item) => (
-          <SocialIcon key={item.label} {...item} />
-        ))}
-      </div>
-        </div>
-      </div>
-    </footer>
+        {/* Copyright + Socials */}
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          justify="space-between"
+          align="center"
+          pt={6}
+          gap={{ base: 4, md: 0 }}
+        >
+          <Text color="#142546">© 2024 All Rights Reserved dotheyswipe.com</Text>
+          <HStack gap={3}>
+            {socialLinks.map((item) => (
+              <SocialIcon key={item.label} {...item} />
+            ))}
+          </HStack>
+        </Flex>
+      </Box>
+    </Box>
   );
 };
 
